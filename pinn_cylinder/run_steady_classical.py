@@ -64,15 +64,15 @@ def BCS_ICS(nodes, box):
 def read_data(**kwargs):
     import scipy.io as sio
     if kwargs['steady']:
-        data = sio.loadmat('..\\data\\2D_cylinder\\mixed\\steady_data.mat')
+        data = sio.loadmat('.\\data\\2D_cylinder\\mixed\\steady_data.mat')
         INLET, OUTLET, WALL= data['INLET'][..., :2], data['OUTLET'], data['WALL']
         num = INLET.shape[0] + OUTLET.shape[0] + WALL.shape[0]
         XY_c  = data['XY_c'][:-num]
-        data = sio.loadmat('..\\data\\2D_cylinder\\mixed\\steady_Fluent.mat')
+        data = sio.loadmat('.\\data\\2D_cylinder\\mixed\\steady_Fluent.mat')
         fields_fluent= np.squeeze(data['field']).T[..., (0, 1, 4, 2, 3)]
         return XY_c, INLET, OUTLET, WALL, fields_fluent
     else:
-        data = sio.loadmat('..\\data\\2D_cylinder\\mixed\\unsteady_data.mat')
+        data = sio.loadmat('.\\data\\2D_cylinder\\mixed\\unsteady_data.mat')
         INLET, OUTLET, WALL, INITIAL= data['INB'][..., :3], data['OUTB'], data['WALL'], data['IC']
         num = INLET.shape[0] + OUTLET.shape[0] + WALL.shape[0]
         XY_c  = data['XY_c'][:-num]
